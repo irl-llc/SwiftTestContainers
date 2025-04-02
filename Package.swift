@@ -20,7 +20,7 @@ let package = Package(
     .package(url: "https://github.com/apple/swift-nio", "2.73.0"..<"2.81.0"), // swift nio 2.81.0 seems to have a bug
     .package(url: "https://github.com/apple/swift-nio-extras", from: "1.24.0"),
     .package(url: "https://github.com/apple/swift-protobuf", from: "1.28.1"),
-    .package(url: "https://github.com/swift-server/async-http-client", from: "1.23.0"),
+    .package(url: "https://github.com/swift-server/async-http-client", from: "1.23.0")
   ],
   targets: [
     // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -31,15 +31,15 @@ let package = Package(
         .product(name:"HTTPTypes", package:"swift-http-types"),
         .product(name:"NIOCore", package:"swift-nio"),
         .product(name:"NIOHTTP1", package:"swift-nio"),
-        .product(name:"AsyncHTTPClient", package:"async-http-client"),
+        .product(name:"AsyncHTTPClient", package:"async-http-client")
       ]
     ),
     .testTarget(
       name: "SwiftTestContainersTests",
       dependencies: [
         "SwiftTestContainers",
-        .product(name:"NIOExtras", package: "swift-nio-extras"),
+        .product(name: "NIOExtras", package: "swift-nio-extras")
       ]
-    ),
-  ],
+    )
+  ]
 )
