@@ -17,9 +17,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Setup Testcontainers Cloud Client
-       uses: atomicjar/testcontainers-cloud-setup-action@v1
-       with:
-         token: ${{ secrets.TC_CLOUD_TOKEN }}
+      uses: atomicjar/testcontainers-cloud-setup-action@main
+      with:
+        token: ${{ secrets.TC_CLOUD_TOKEN }}
     - name: Build
       run: swift build -v
     - name: Run tests
