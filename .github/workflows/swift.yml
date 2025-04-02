@@ -16,6 +16,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - uses: swift-actions/setup-swift@v2
+      with:
+        swift-version: "6"
     - name: Setup Testcontainers Cloud Client
       uses: atomicjar/testcontainers-cloud-setup-action@main
       with:
