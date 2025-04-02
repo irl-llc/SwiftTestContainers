@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-  name: "DockerTestContainers",
+  name: "SwiftTestContainers",
   platforms: [
     .macOS(.v13),
     .iOS(.v13)
@@ -12,8 +12,8 @@ let package = Package(
   products: [
     // Products define the executables and libraries a package produces, making them visible to other packages.
     .library(
-      name: "DockerTestContainers",
-      targets: ["DockerTestContainers"]),
+      name: "SwiftTestContainers",
+      targets: ["SwiftTestContainers"]),
   ],
   dependencies: [
     .package(url: "https://github.com/apple/swift-http-types", from: "1.3.0"),
@@ -26,7 +26,7 @@ let package = Package(
     // Targets are the basic building blocks of a package, defining a module or a test suite.
     // Targets can depend on other targets in this package and products from dependencies.
     .target(
-      name: "DockerTestContainers",
+      name: "SwiftTestContainers",
       dependencies: [
         .product(name:"HTTPTypes", package:"swift-http-types"),
         .product(name:"NIOCore", package:"swift-nio"),
@@ -35,9 +35,9 @@ let package = Package(
       ]
     ),
     .testTarget(
-      name: "DockerTestContainersTests",
+      name: "SwiftTestContainersTests",
       dependencies: [
-        "DockerTestContainers",
+        "SwiftTestContainers",
         .product(name:"NIOExtras", package: "swift-nio-extras"),
       ]
     ),

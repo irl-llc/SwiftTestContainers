@@ -7,7 +7,7 @@ import NIOHTTP1
 import NIOPosix
 
 public actor Container {
-  private let logger = Logger(label: "llc.irl.DockerTestContainers.Container")
+  private let logger = Logger(label: "llc.irl.SwiftTestContainers.Container")
   private let client: DockerClient
   private let containerId: String
   private var backgroundTasks: [Task<Void, any Error>] = []

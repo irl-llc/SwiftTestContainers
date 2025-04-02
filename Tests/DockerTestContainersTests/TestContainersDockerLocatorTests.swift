@@ -1,4 +1,4 @@
-@testable import DockerTestContainers
+@testable import SwiftTestContainers
 import Testing
 import Foundation
 

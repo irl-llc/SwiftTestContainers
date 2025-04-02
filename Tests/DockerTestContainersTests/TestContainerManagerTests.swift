@@ -1,13 +1,13 @@
-@testable import DockerTestContainers
+@testable import SwiftTestContainers
 import Logging
 import NIO
 import NIOExtras
 import Testing
 import Foundation
 
-@Suite("DockerTestContainers")
-final class DockerTestContainersTest {
-  private let logger: Logger = Logger(label: "llc.irl.DockerTestContainersTest")
+@Suite("SwiftTestContainers")
+final class SwiftTestContainersTest {
+  private let logger: Logger = Logger(label: "llc.irl.SwiftTestContainersTest")
   private let dockerTestContainers: TestContainerManager
   
   init() async {

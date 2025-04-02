@@ -10,7 +10,7 @@ private let defaultURL: URL = {
   return url
 }()
 
-private let logger = Logger(label: "llc.irl.DockerTestContainers.EnvironmentBasedDockerLocator")
+private let logger = Logger(label: "llc.irl.SwiftTestContainers.EnvironmentBasedDockerLocator")
 
 class EnvironmentBasedDockerLocator: DockerLocator {
   func locate() -> URL? {

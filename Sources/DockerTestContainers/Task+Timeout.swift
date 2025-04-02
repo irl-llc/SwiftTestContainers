@@ -5,7 +5,7 @@ import Logging
 
 private let nanosecondsInSecond: UInt64 = 1_000_000_000
 
-private let logger = Logger(label: "llc.irl.DockerTestContainers.Task")
+private let logger = Logger(label: "llc.irl.SwiftTestContainers.Task")
 
 public extension Task where Failure == Error {
   init(priority: TaskPriority? = nil, timeout: TimeInterval, operation: @escaping @Sendable () async throws -> Success) {

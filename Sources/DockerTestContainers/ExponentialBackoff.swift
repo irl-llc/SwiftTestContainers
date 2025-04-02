@@ -8,7 +8,7 @@ struct BackoffError: Error {
   let errors: [any Error]
 }
 
-private let backoffLogger = Logger(label: "llc.irl.DockerTestContainers.Backoff")
+private let backoffLogger = Logger(label: "llc.irl.SwiftTestContainers.Backoff")
 
 func withExponentialBackoff<T: Sendable>(backoffStartingSeconds: TimeInterval = 1,
                                maxBackoffSeconds: TimeInterval = 60,

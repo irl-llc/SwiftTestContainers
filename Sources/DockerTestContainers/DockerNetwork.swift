@@ -6,7 +6,7 @@ import NIOCore
 import NIOPosix
 
 public actor DockerNetwork {
-  let logger = Logger(label: "llc.irl.DockerTestContainers.DockerNetwork")
+  let logger = Logger(label: "llc.irl.SwiftTestContainers.DockerNetwork")
   private let client: DockerClient
   public let name: String
   init(_ name: String, client: DockerClient) {

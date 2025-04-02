@@ -5,7 +5,7 @@ import Logging
 
 class TestContainersDockerLocator: DockerLocator {
   let baseDirectory: URL?
-  static let logger = Logger(label: "llc.irl.DockerTestContainers.TestContainersDockerLocator")
+  static let logger = Logger(label: "llc.irl.SwiftTestContainers.TestContainersDockerLocator")
   
   private static let homeDir = getHomeDir()
   

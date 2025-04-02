@@ -7,7 +7,7 @@ import NIOCore
 import NIOPosix
 
 public actor TestContainerManager {
-  private let logger = Logger(label: "llc.irl.DockerTestContainers.TestContainerManager")
+  private let logger = Logger(label: "llc.irl.SwiftTestContainers.TestContainerManager")
   private let client: DockerClient
   private var ryuk: Ryuk?
   private let testId: UUID

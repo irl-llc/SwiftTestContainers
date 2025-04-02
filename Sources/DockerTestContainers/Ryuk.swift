@@ -6,7 +6,7 @@ import NIOFoundationCompat
 import NIOPosix
 
 actor Ryuk {
-  let logger = Logger(label: "llc.irl.DockerTestContainers.Ryuk")
+  let logger = Logger(label: "llc.irl.SwiftTestContainers.Ryuk")
   let container: Container
   private let portBinding: ContainerPortBinding
   private var channel: Channel?

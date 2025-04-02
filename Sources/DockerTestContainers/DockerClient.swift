@@ -10,7 +10,7 @@ import NIOHTTP1
 import NIOPosix
 
 final class NIOMetricsLogger: NIOEventLoopMetricsDelegate {
-  let logger = Logger(label: "llc.irl.DockerTestContainers.NioMetricDelegate")
+  let logger = Logger(label: "llc.irl.SwiftTestContainers.NioMetricDelegate")
   func processedTick(info: NIOPosix.NIOEventLoopTickInfo) {
     logger.trace("Event loop tick statics \(info.eventLoopID): {startTime: \(info.startTime), numberOfTasks: \(info.numberOfTasks)}")
   }
@@ -18,7 +18,7 @@ final class NIOMetricsLogger: NIOEventLoopMetricsDelegate {
 
 
 public final class DockerClient: Sendable {
-  static let logger = Logger(label: "llc.irl.DockerTestContainers.DockerClient")
+  static let logger = Logger(label: "llc.irl.SwiftTestContainers.DockerClient")
   private let httpClient: HTTPClient
   private let baseURL: URL
   private let jsonEncoder = JSONEncoder()
@@ -29,7 +29,7 @@ public final class DockerClient: Sendable {
   public init(baseURL: URL, testContainersSessionId: UUID? = nil) {
     self.baseURL = baseURL
     self.testContainersSessionId = testContainersSessionId
-    let httpLogger = Logger(label: "llc.irl.DockerTestContainers.DockerClient.HTTPClient")
+    let httpLogger = Logger(label: "llc.irl.SwiftTestContainers.DockerClient.HTTPClient")
 
     eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 1, metricsDelegate: NIOMetricsLogger())
     httpClient = HTTPClient(
@@ -306,7 +306,7 @@ struct DockerLogEvent {
 }
 
 private actor DockerLogFrameParser {
-  static let logger = Logger(label: "llc.irl.DockerTestContainers.DockerLogFrameParser")
+  static let logger = Logger(label: "llc.irl.SwiftTestContainers.DockerLogFrameParser")
   private var buffer = ByteBuffer()
   private var parsedFrames = [DockerLogEvent]()
 
@@ -420,7 +420,7 @@ private struct ErrorResponse: Codable {
 }
 
 private struct FileReadSequence: AsyncSequence {
-  let logger = Logger(label: "llc.irl.DockerTestContainers.FileReadSequence")
+  let logger = Logger(label: "llc.irl.SwiftTestContainers.FileReadSequence")
   typealias Element = ByteBuffer
 
   let fileHandle: FileHandle
@@ -432,7 +432,7 @@ private struct FileReadSequence: AsyncSequence {
   }
 
   struct AsyncIterator: AsyncIteratorProtocol {
-    let logger = Logger(label: "llc.irl.DockerTestContainers.FileReadSequence.AsyncIterator")
+    let logger = Logger(label: "llc.irl.SwiftTestContainers.FileReadSequence.AsyncIterator")
     let fileHandle: FileHandle
     let chunkSize: Int
     let totalSize: Int64
