@@ -19,7 +19,6 @@ let package = Package(
     .package(url: "https://github.com/apple/swift-http-types", from: "1.3.0"),
     .package(url: "https://github.com/apple/swift-nio", "2.73.0"..<"2.81.0"), // swift nio 2.81.0 seems to have a bug
     .package(url: "https://github.com/apple/swift-nio-extras", from: "1.24.0"),
-    .package(url: "https://github.com/apple/swift-protobuf", from: "1.28.1"),
     .package(url: "https://github.com/swift-server/async-http-client", from: "1.23.0")
   ],
   targets: [

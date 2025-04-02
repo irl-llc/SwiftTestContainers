@@ -67,7 +67,9 @@ final class SwiftTestContainersTest {
     let bootstrap = ClientBootstrap(group: eventLoopGroup)
       .channelOption(ChannelOptions.socket(SocketOptionLevel(SOL_SOCKET), SO_REUSEADDR), value: 1)
       .channelInitializer { channel in
-        channel.pipeline.addHandler(ByteToMessageHandler(LineBasedFrameDecoder()))
+        channel.eventLoop.makeCompletedFuture {
+          try channel.pipeline.syncOperations.addHandlers(ByteToMessageHandler(LineBasedFrameDecoder()))
+        }
       }
     
     let channel = try await bootstrap.connect(host: host, port: port).get()
