@@ -47,9 +47,10 @@ final class SwiftTestContainersTest {
     let testNetworkUUID = UUID()
     let testNetworkName = "test-network-\(testNetworkUUID.uuidString)"
     _ = try await dockerTestContainers.createNetwork(testNetworkName)
-    let simpleContainer = try await createSocatServerContainer(aliases: [testNetworkName: ["simple-server"]])
+    _ = try await createSocatServerContainer(aliases: [testNetworkName: ["simple-server"]])
     let simpleContainerClient = try await dockerTestContainers.createContainer(
-      "busybox",
+      // TODO: simply using "busybox" (which should work) fails with a 404
+      "mirror.gcr.io/library/busybox:latest",
       .init(networks: [testNetworkName], cmd: ["sh", "-c", "echo \"Reading from simple server\" && nc simple-server 8080 && echo \"Assertions Passed!\""])
     )
     try await simpleContainerClient.logOutput()
