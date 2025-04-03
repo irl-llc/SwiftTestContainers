@@ -6,15 +6,16 @@ import Testing
 
 @Suite("URL array resolution tests")
 class URLArrayFindFirstResolvableTests {
-  var tempFileURL: URL!
+  var tempFileDockerURL: URL!
   var serverURL: URL!
   var server: NIOTCPServer!
+  var tempFileActualURL: URL!
     
   init() async throws {
     // Create a temporary file
-    let tempFileActualURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+    tempFileActualURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
     try Data().write(to: tempFileActualURL)
-    tempFileURL = URL(string: "file://\(tempFileActualURL.path.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)")
+    tempFileDockerURL = URL(string: "file://\(tempFileActualURL.path.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)")
         
     // Create a mock server
     server = try await NIOTCPServer()
@@ -22,15 +23,15 @@ class URLArrayFindFirstResolvableTests {
   }
     
   deinit {
-    try? FileManager.default.removeItem(at: tempFileURL)
+    try? FileManager.default.removeItem(at: tempFileActualURL)
     try? server.close()
   }
   
   @Test("Only accept a file URL if it is valid")
   func validFileURLOnly() async throws {
-    let urls = [tempFileURL!]
+    let urls = [tempFileDockerURL!]
     let result = await urls.findFirstResolvable()
-    #expect(result == tempFileURL, "The valid file URL should be chosen")
+    #expect(result == tempFileDockerURL, "The valid file URL should be chosen")
   }
     
   @Test("Reject an invalid file URL")
@@ -58,12 +59,12 @@ class URLArrayFindFirstResolvableTests {
   func resolutionOrder() async throws {
     let urls = [
       URL(string: "file:///nonexistent/file")!,
-      tempFileURL!,
+      tempFileDockerURL!,
       serverURL!,
       URL(string: "https://example.com")!
     ]
     let result = await urls.findFirstResolvable()
-    #expect(result == tempFileURL, "The first valid URL (file) should be chosen")
+    #expect(result == tempFileDockerURL, "The first valid URL (file) should be chosen")
   }
 }
 
