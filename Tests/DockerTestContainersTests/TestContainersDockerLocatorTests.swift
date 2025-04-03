@@ -28,7 +28,7 @@ class TestContainersDockerLocatorTests {
     #expect(dockerURL?.absoluteString == "http://127.0.0.1:2375", "Docker URL should match the one in the properties file")
         
     // Clean up
-    try FileManager.default.removeItem(at: tempDir)
+    try? FileManager.default.removeItem(at: tempDir)
   }
     
   @Test("Returns nil when no .testcontainers.properties file is found")
